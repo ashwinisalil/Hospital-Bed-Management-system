@@ -32,10 +32,6 @@ The Emergency Hospital Bed Availability & Ambulance Management System is a web-b
 - View available bed status
 - Open hospital location using Google Maps
 
-### System Admin
-- Manage hospitals
-- Manage ambulance driver accounts
-- View reports and system data
 
 ---
 
@@ -51,7 +47,7 @@ The Emergency Hospital Bed Availability & Ambulance Management System is a web-b
 - Express.js
 
 ### Database
-- MySQL (Php)
+- MySQL
 
 ### APIs
 - Google Maps API
@@ -74,7 +70,6 @@ The Emergency Hospital Bed Availability & Ambulance Management System is a web-b
 - Hospital
 - Bed
 - Ambulance
-- Admin
 - Emergency_Request
 
 ---
@@ -87,7 +82,6 @@ The Emergency Hospital Bed Availability & Ambulance Management System is a web-b
 - Search Nearby Hospitals
 - View Normal, ICU, and Emergency Beds
 - Google Maps Navigation
-- Admin Management Panel
 
 ---
 
