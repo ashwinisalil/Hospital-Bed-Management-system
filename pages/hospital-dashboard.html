@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef5ff;
+}
+
+/* Navbar */
+
+header{
+    width:100%;
+    background:#0d6efd;
+    color:white;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h2{
+    font-size:28px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:17px;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:yellow;
+}
+
+/* Welcome */
+
+.welcome{
+    background:white;
+    margin:25px;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.welcome h1{
+    color:#0d6efd;
+}
+
+.welcome p{
+    margin-top:10px;
+    color:#555;
+}
+
+/* Dashboard Cards */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:25px;
+}
+
+.card{
+    color:white;
+    border-radius:10px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+}
+
+.card h2{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:18px;
+}
+
+.blue{
+    background:#0d6efd;
+}
+
+.green{
+    background:#198754;
+}
+
+.orange{
+    background:#fd7e14;
+}
+
+.red{
+    background:#dc3545;
+}
+
+/* Main Section */
+
+.container{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    padding:25px;
+}
+
+.box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+.box h2{
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th{
+    background:#0d6efd;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    text-align:center;
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
+tr:hover{
+    background:#f4f4f4;
+}
+
+/* Form */
+
+form input,
+form select{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:17px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#084db5;
+}
+
+/* Footer */
+
+footer{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+header{
+flex-direction:column;
+}
+
+nav{
+margin-top:15px;
+}
+
+nav a{
+display:inline-block;
+margin:10px;
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>🏥 Hospital Dashboard</h2>
+
+<nav>
+<a href="#">Dashboard</a>
+<a href="#">Beds</a>
+<a href="#">Emergency Requests</a>
+<a href="#">Profile</a>
+<a href="#">Logout</a>
+</nav>
+
+</header>
+
+<section class="welcome">
+
+<h1>Welcome, City Care Hospital</h1>
+
+<p>
+Manage your hospital bed availability and respond to ambulance emergency requests quickly.
+</p>
+
+</section>
+
+<section class="cards">
+
+<div class="card blue">
+<h2>120</h2>
+<p>Total Beds</p>
+</div>
+
+<div class="card green">
+<h2>76</h2>
+<p>Available Beds</p>
+</div>
+
+<div class="card red">
+<h2>44</h2>
+<p>Occupied Beds</p>
+</div>
+
+<div class="card orange">
+<h2>18</h2>
+<p>Emergency Requests</p>
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="box">
+
+<h2>Recent Emergency Requests</h2>
+
+<table>
+
+<tr>
+<th>Request ID</th>
+<th>Patient</th>
+<th>Ambulance</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>ER101</td>
+<td>Rahul Patil</td>
+<td>AMB001</td>
+<td>Pending</td>
+</tr>
+
+<tr>
+<td>ER102</td>
+<td>Sneha Joshi</td>
+<td>AMB005</td>
+<td>Accepted</td>
+</tr>
+
+<tr>
+<td>ER103</td>
+<td>Akash Sharma</td>
+<td>AMB008</td>
+<td>Pending</td>
+</tr>
+
+<tr>
+<td>ER104</td>
+<td>Pooja Singh</td>
+<td>AMB010</td>
+<td>Completed</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="box">
+
+<h2>Update Bed Availability</h2>
+    <form action="http://localhost:3000/hospital/update-bed" method="POST">
+
+        <input type="number" name="hospital_id" placeholder="Hospital ID" required>
+
+        <input type="number" name="normal_beds" placeholder="Normal Beds">
+
+        <input type="number" name="icu_beds" placeholder="ICU Beds">
+
+        <input type="number" name="emergency_beds" placeholder="Emergency Beds">
+
+        <button type="submit">
+            Update Beds
+        </button>
+
+    </form>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+Emergency Hospital Bed Availability & Ambulance Management System © 2026
+</p>
+
+</footer>
+
+</body>
+</html>

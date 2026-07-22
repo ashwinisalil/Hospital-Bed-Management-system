@@ -1,0 +1,392 @@
+/* ==========================================
+   Google Fonts Import
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+/* ==========================================
+   CSS Variables & Reset (New Healthcare Palette)
+   ========================================== */
+:root {
+
+  /* Primary Colors */
+  --primary: #2563EB;          /* Medical Blue */
+  --primary-dark: #1E3A8A;     /* Navy Blue */
+  --secondary: #06B6D4;        /* Cyan */
+
+  /* Accent Colors */
+  --accent: #EF4444;           /* Emergency Red */
+  --success: #22C55E;          /* Green */
+  --warning: #F59E0B;          /* Amber */
+
+  /* Background */
+  --bg-light: #F8FAFC;         /* Soft White */
+  --bg-section: #EEF6FF;       /* Light Blue */
+
+  /* Cards */
+  --card-bg: #FFFFFF;
+  --card-hover: #F1F5F9;
+
+  /* Text */
+  --text-dark: #0F172A;
+  --text-muted: #64748B;
+  --text-light: #FFFFFF;
+
+  /* Borders & Shadows */
+  --border: #E2E8F0;
+  --shadow: rgba(37, 99, 235, 0.15);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #1E3A8A, #2563EB);
+  --gradient-secondary: linear-gradient(135deg, #06B6D4, #3B82F6);
+  --gradient-danger: linear-gradient(135deg, #EF4444, #DC2626);
+
+}
+/* Hospital Logo Styling */
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: white;
+    padding: 5px;
+    margin-right: 12px;
+
+    /* Shadow Effect */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.25);
+
+    /* Smooth Animation */
+    transition: 0.3s ease;
+}
+
+
+/* Logo Hover Effect */
+
+.logo:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.35);
+}
+
+
+/* Navbar Title Styling */
+
+.navbar-brand span {
+
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+
+}
+
+
+/* Align Logo and Text */
+
+.navbar-brand {
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}N{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+  background: var(--bg-light);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   Navbar
+   ========================================== */
+.navbar {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary)) !important;
+  padding: 15px 0;
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.2);
+}
+
+.navbar-brand {
+  font-weight: 800;
+  color: white !important;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  margin-left: 15px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: white !important;
+  transform: translateY(-1px);
+}
+
+.navbar .btn {
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 8px 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.navbar .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================
+   Hero Section
+   ========================================== */
+.hero {
+  /* Green ki jagah Deep Navy & Royal Blue Overlay */
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(37, 99, 235, 0.80)),
+              url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1500&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+  position: relative;
+}
+.hero h1 {
+  font-size: 54px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero p {
+  font-size: 22px;
+  font-weight: 400;
+  color: #ccfbf1;
+  max-width: 700px;
+  margin: 0 auto 35px auto;
+}
+
+.btn-custom {
+  padding: 14px 34px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 50px;
+  margin: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-custom:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary.btn-custom {
+  background: var(--primary);
+  border: none;
+}
+
+.btn-danger.btn-custom {
+  background: var(--accent);
+  border: none;
+}
+
+/* ==========================================
+   Section Titles
+   ========================================== */
+.section-title {
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 45px;
+  font-weight: 800;
+  font-size: 36px;
+  color: var(--text-dark);
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
+}
+
+/* ==========================================
+   Cards & Feature Boxes
+   ========================================== */
+.card, .feature-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(204, 251, 241, 0.8);
+  border-radius: 20px;
+  padding: 35px 25px;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px -10px rgba(13, 148, 136, 0.05);
+}
+
+.card:hover, .feature-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(13, 148, 136, 0.18);
+  border-color: rgba(13, 148, 136, 0.4);
+}
+
+.icon-wrapper {
+  width: 80px;
+  height: 80px;
+  background: #ccfbf1;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .icon-wrapper, .feature-box:hover .icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  background: #99f6e4;
+}
+
+.card i, .feature-box i {
+  font-size: 36px;
+  color: var(--primary);
+}
+
+.card h4, .feature-box h4 {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+.card p, .feature-box p {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   System Flow Section
+   ========================================== */
+.flow {
+  background: linear-gradient(135deg, var(--primary-dark), #0f766e);
+  color: white;
+  padding: 80px 0;
+  margin-top: 90px;
+  position: relative;
+}
+
+.flow h2 {
+  text-align: center;
+  font-weight: 800;
+  font-size: 36px;
+  margin-bottom: 50px;
+}
+
+.flow-step {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-dark);
+  padding: 22px 20px;
+  margin: 10px 0;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+}
+
+.flow-step:hover {
+  transform: translateY(-5px);
+  background: #ffffff;
+  border-color: #5eead4;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ==========================================
+   Future Scope Badges
+   ========================================== */
+.future-card {
+  background: white;
+  border: 1px solid #ccfbf1;
+  padding: 24px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.04);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.future-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 12px 25px rgba(13, 148, 136, 0.12);
+}
+
+.future-card h5 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text-dark);
+}
+
+/* ==========================================
+   Footer
+   ========================================== */
+.footer {
+  background: #042f2e;
+  color: #99f6e4;
+  padding: 60px 20px 40px 20px;
+  text-align: center;
+  margin-top: 90px;
+  border-top: 4px solid var(--accent);
+}
+
+.footer h4 {
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.footer p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #ccfbf1;
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 38px; }
+  .hero p { font-size: 18px; }
+  .section-title { font-size: 28px; margin-top: 50px; }
+  .navbar .btn { margin: 5px 0 !important; display: inline-block; }
+}
