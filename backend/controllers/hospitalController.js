@@ -46,7 +46,6 @@ const loginHospital=(req, res)=>{
         if(result.length==0){
              return res.send("Invalid Username or Password");
         }
-        console.log("Login Success");
         res.redirect("/hospital-dashboard.html")
     });
 };
