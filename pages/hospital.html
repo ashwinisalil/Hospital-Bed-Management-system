@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hospital Management Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+body{font-family:Arial;margin:0;background:#eef5ff}
+header{background:linear-gradient(90deg,#0d6efd,#20c997);color:#fff;padding:20px;text-align:center}
+.search{padding:20px;text-align:center}.search input{width:70%;padding:12px;border-radius:25px;border:2px solid #0d6efd}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;padding:20px}
+.card,.form{background:#fff;border-radius:15px;box-shadow:0 4px 10px #0002;padding:18px}
+button{padding:10px 15px;border:none;border-radius:20px;color:#fff;cursor:pointer}
+.add{background:#198754}.del{background:#dc3545}.map{background:#0d6efd}
+.form{max-width:700px;margin:20px auto}
+input{width:100%;padding:10px;margin:8px 0}
+</style></head><body>
+<header><h1><i class="fa-solid fa-hospital"></i> Hospital Management Dashboard</h1></header>
+<div class="search"><input id="s" placeholder="Search hospital..." onkeyup="render()"></div>
+<div class="form">
+<input id="n" placeholder="Hospital Name"><input id="l" placeholder="Location">
+<input id="p" placeholder="Phone"><input id="b" placeholder="Beds">
+<button class="add" onclick="add()">Add Hospital</button></div>
+<div id="g" class="grid"></div>
+<script>
+let h=JSON.parse(localStorage.hospitals||'null')||[
+{name:'Navale Hospital',loc:'Narhe',phone:'02024101100',beds:120},
+{name:'Shree Hospital',loc:'Dhayari',phone:'02024399999',beds:95},
+{name:'Bharati Hospital',loc:'Katraj',phone:'02040555555',beds:250},
+{name:'Siddhivinayak Hospital',loc:'Narhe',phone:'02024351111',beds:80},
+{name:'Sai Sneh Hospital',loc:'Ambegaon',phone:'02024362222',beds:110},
+{name:'Pawar Hospital',loc:'Dhayari',phone:'02024383333',beds:75},
+{name:'Krishna Hospital',loc:'Sinhagad Road',phone:'02024374444',beds:150},
+{name:'Sanjeevani Hospital',loc:'Ambegaon',phone:'02024345555',beds:130},
+{name:'Lifeline Hospital',loc:'Katraj',phone:'02024336666',beds:170},
+{name:'Noble Care Hospital',loc:'Narhe',phone:'02024327777',beds:140}
+];
+function save(){localStorage.hospitals=JSON.stringify(h);render();}
+function add(){h.push({name:n.value,loc:l.value,phone:p.value,beds:b.value});n.value=l.value=p.value=b.value='';save();}
+function del(i){h.splice(i,1);save();}
+function render(){let q=s.value.toLowerCase();g.innerHTML='';h.filter(x=>x.name.toLowerCase().includes(q)||x.loc.toLowerCase().includes(q)).forEach((x,i)=>g.innerHTML+=`<div class=card><h3>${x.name}</h3><p>📍 ${x.loc}</p><p>📞 ${x.phone}</p><p>🛏 Beds: ${x.beds}</p><button class=map onclick="window.open('https://www.google.com/maps/search/'+encodeURIComponent('${x.name} ${x.loc}'))">Map</button> <button class=del onclick="del(${i})">Delete</button></div>`)}
+render();
+</script></body></html>
