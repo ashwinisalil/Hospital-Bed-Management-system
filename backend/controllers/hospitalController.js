@@ -25,7 +25,7 @@ const registerHospital = (req, res) => {
                 return res.status(500).send("Registration Failed");
             }
 
-            res.send("Hospital Registered Successfully");
+            res.redirect("/hospital-dashboard.html");
         }
     );
 };
@@ -46,45 +46,12 @@ const loginHospital=(req, res)=>{
         if(result.length==0){
              return res.send("Invalid Username or Password");
         }
-        res.redirect("/hospital-dashboard.html")
+        res.redirect("/hospital-dashboard.html");
     });
 };
 
-const updateBeds = (req, res) => {
 
-    const {
-        hospital_id,
-        normal_beds,
-        icu_beds,
-        emergency_beds
-    } = req.body;
-
-    const sql = `
-        UPDATE bed
-        SET normal_beds=?,
-            icu_beds=?,
-            emergency_beds=?
-        WHERE hospital_id=?
-    `;
-
-    db.query(
-        sql,
-        [normal_beds, icu_beds, emergency_beds, hospital_id],
-        (err, result) => {
-
-            if(err){
-                console.log(err);
-                return res.send("Update Failed");
-            }
-
-            res.send("Bed Updated Successfully");
-        }
-    );
-
-};
- 
 module.exports = {
     registerHospital,
-    loginHospital,
-    updateBeds
+    loginHospital
 };

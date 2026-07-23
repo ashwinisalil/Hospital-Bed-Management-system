@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./config/db");
 const hospitalRoutes = require("./routes/hospitalRoutes");
 const ambulanceRoutes=require("./routes/ambulanceRoutes");
+const bedRoutes=require("./routes/bedRoutes");
 const path = require("path");
 
 const app = express();
@@ -13,6 +14,7 @@ app.use("/hospital", hospitalRoutes);
 app.use("/ambulance", ambulanceRoutes );
 app.use(express.static(path.join(__dirname, "../pages")));
 app.use("/css", express.static(path.join(__dirname, "../css")));
+app.use("/bed", bedRoutes);
 
 // Home Route
 app.get("/", (req, res) => {
