@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emergency Ambulance Finder & Management System</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f1f7ff;
+            color: #333;
+        }
+
+
+        /* Header */
+
+        header {
+
+            background: linear-gradient(135deg, #d90429, #0077b6);
+            color: white;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 5px 20px #aaa;
+
+        }
+
+        header i {
+            font-size: 45px;
+        }
+
+        header h1 {
+            font-size: 30px;
+        }
+
+
+        /* Search Section */
+
+        .search-section {
+
+            padding: 30px;
+            text-align: center;
+
+        }
+
+        .search-section h2 {
+
+            color: #0077b6;
+            margin-bottom: 20px;
+
+        }
+
+
+        .search-box {
+
+            width: 80%;
+            max-width: 700px;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #0077b6;
+            font-size: 17px;
+            outline: none;
+
+        }
+
+
+
+        /* Container */
+
+        .container {
+
+            width: 90%;
+            margin: auto;
+
+        }
+
+
+        /* Section Heading */
+
+        .section-title {
+
+            margin: 30px 0;
+            color: #d90429;
+            border-left: 6px solid #0077b6;
+            padding-left: 10px;
+
+        }
+
+
+
+        /* Cards */
+
+        .ambulance-container {
+
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+
+        }
+
+
+        .card {
+
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
+            transition: .3s;
+            animation: fade .5s;
+
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .2);
+
+        }
+
+
+        .card h3 {
+
+            color: #0077b6;
+            margin-bottom: 15px;
+
+        }
+
+
+        .card p {
+
+            margin: 8px 0;
+
+        }
+
+
+        .available {
+
+            color: green;
+            font-weight: bold;
+
+        }
+
+        .busy {
+
+            color: red;
+            font-weight: bold;
+
+        }
+
+
+
+        /* Buttons */
+
+        button {
+
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 5px;
+
+        }
+
+
+        .edit {
+
+            background: #0077b6;
+            color: white;
+
+        }
+
+
+        .delete {
+
+            background: #d90429;
+            color: white;
+
+        }
+
+
+        button:hover {
+
+            opacity: .8;
+
+        }
+
+
+
+        /* Add Form */
+
+        .form-box {
+
+            background: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px #ccc;
+            max-width: 700px;
+
+        }
+
+
+
+        .form-box input,
+        .form-box select {
+
+
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+
+        }
+
+
+        .submit-btn {
+
+            background: linear-gradient(135deg, #d90429, #0077b6);
+            color: white;
+            width: 100%;
+            font-size: 18px;
+
+        }
+
+
+        /* Animation */
+
+        @keyframes fade {
+
+            from {
+
+                opacity: 0;
+                transform: scale(.9);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+
+        /* Mobile */
+
+        @media(max-width:600px) {
+
+            header h1 {
+
+                font-size: 20px;
+
+            }
+
+
+            .search-box {
+
+                width: 95%;
+
+            }
+
+            .container {
+
+                width: 95%;
+
+            }
+
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <i class="fa-solid fa-truck-medical"></i>
+
+        <h1>
+            Emergency Ambulance Finder & Management System
+        </h1>
+
+    </header>
+
+
+
+    <section class="search-section">
+
+        <h2>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            Search Ambulance
+        </h2>
+
+
+        <input type="text" id="search" class="search-box" placeholder="Search by location, name, driver or contact...">
+
+
+    </section>
+
+
+
+    <div class="container">
+
+
+        <h2 class="section-title">
+
+            <i class="fa-solid fa-location-dot"></i>
+            Nearby Ambulances in Narhe
+
+        </h2>
+
+
+        <div id="ambulanceList" class="ambulance-container"></div>
+
+
+
+        <h2 class="section-title">
+
+            <i class="fa-solid fa-plus"></i>
+            Add Ambulance
+
+        </h2>
+
+
+
+        <div class="form-box">
+
+
+            <input id="id" placeholder="Ambulance ID">
+
+            <input id="name" placeholder="Ambulance Name">
+
+            <input id="driver" placeholder="Driver Name">
+
+            <input id="contact" placeholder="Contact Number">
+
+            <input id="location" placeholder="Location">
+
+
+            <select id="type">
+
+                <option>Emergency</option>
+                <option>ICU</option>
+                <option>Patient Transfer</option>
+
+            </select>
+
+
+
+            <select id="status">
+
+                <option>Available</option>
+                <option>Busy</option>
+
+            </select>
+
+
+
+            <button class="submit-btn" onclick="addAmbulance()">
+
+                <i class="fa-solid fa-plus"></i>
+                Add Ambulance
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <script>
+
+
+        let ambulances = JSON.parse(localStorage.getItem("ambulances")) || [
+
+
+            {
+                id: "AMB001",
+                name: "Narhe Emergency Care",
+                driver: "Rahul Patil",
+                contact: "9876543210",
+                location: "Narhe",
+                type: "Emergency",
+                status: "Available"
+            },
+
+
+            {
+                id: "AMB002",
+                name: "Life Saver Ambulance",
+                driver: "Amit Shinde",
+                contact: "9876543211",
+                location: "Dhayari",
+                type: "ICU",
+                status: "Available"
+            },
+
+
+            {
+                id: "AMB003",
+                name: "Sai Ambulance",
+                driver: "Rohit Kale",
+                contact: "9876543212",
+                location: "Katraj",
+                type: "Emergency",
+                status: "Busy"
+            },
+
+
+            {
+                id: "AMB004",
+                name: "Metro Care Ambulance",
+                driver: "Sagar More",
+                contact: "9876543213",
+                location: "Ambegaon",
+                type: "Patient Transfer",
+                status: "Available"
+            },
+
+
+            {
+                id: "AMB005",
+                name: "Fast Rescue",
+                driver: "Vijay Jadhav",
+                contact: "9876543214",
+                location: "Sinhagad Road",
+                type: "Emergency",
+                status: "Available"
+            },
+
+
+            {
+                id: "AMB006",
+                name: "Health Plus",
+                driver: "Akash Pawar",
+                contact: "9876543215",
+                location: "Narhe",
+                type: "ICU",
+                status: "Busy"
+            },
+
+
+            {
+                id: "AMB007",
+                name: "Om Ambulance",
+                driver: "Kiran Joshi",
+                contact: "9876543216",
+                location: "Dhayari",
+                type: "Emergency",
+                status: "Available"
+            },
+
+
+            {
+                id: "AMB008",
+                name: "City Rescue",
+                driver: "Nilesh Patil",
+                contact: "9876543217",
+                location: "Katraj",
+                type: "Patient Transfer",
+                status: "Available"
+            },
+
+
+            {
+                id: "AMB009",
+                name: "Rapid Ambulance",
+                driver: "Ganesh More",
+                contact: "9876543218",
+                location: "Ambegaon",
+                type: "Emergency",
+                status: "Busy"
+            },
+
+
+            {
+                id: "AMB010",
+                name: "Care Ambulance",
+                driver: "Sachin Kale",
+                contact: "9876543219",
+                location: "Sinhagad Road",
+                type: "ICU",
+                status: "Available"
+            }
+
+
+        ];
+
+
+
+        localStorage.setItem("ambulances", JSON.stringify(ambulances));
+
+
+
+        function display(data = ambulances) {
+
+
+            let box = document.getElementById("ambulanceList");
+
+            box.innerHTML = "";
+
+
+            data.forEach((a, index) => {
+
+
+                box.innerHTML += `
+
+<div class="card">
+
+
+<h3>
+<i class="fa-solid fa-truck-medical"></i>
+${a.name}
+</h3>
+
+
+<p><b>ID:</b> ${a.id}</p>
+
+<p><b>Driver:</b> ${a.driver}</p>
+
+<p><b>Contact:</b> ${a.contact}</p>
+
+<p><b>Location:</b> ${a.location}</p>
+
+<p><b>Emergency:</b> ${a.type}</p>
+
+
+<p>
+<b>Status:</b>
+
+<span class="${a.status == "Available" ? 'available' : 'busy'}">
+
+${a.status}
+
+</span>
+
+</p>
+
+
+
+<button class="edit" onclick="editAmb(${index})">
+
+<i class="fa-solid fa-pen"></i>
+Edit
+
+</button>
+
+
+<button class="delete" onclick="deleteAmb(${index})">
+
+<i class="fa-solid fa-trash"></i>
+Delete
+
+</button>
+
+
+
+</div>
+
+
+`;
+
+
+
+            });
+
+
+        }
+
+
+
+        display();
+
+
+
+
+
+        function addAmbulance() {
+
+
+            let obj = {
+
+                id: id.value,
+                name: name.value,
+                driver: driver.value,
+                contact: contact.value,
+                location: location.value,
+                type: type.value,
+                status: status.value
+
+            };
+
+
+            ambulances.push(obj);
+
+
+            save();
+
+
+            alert("Ambulance Added Successfully");
+
+
+        }
+
+
+
+        function deleteAmb(index) {
+
+
+            if (confirm("Delete Ambulance?")) {
+
+
+                ambulances.splice(index, 1);
+
+                save();
+
+
+            }
+
+
+        }
+
+
+
+
+
+        function editAmb(index) {
+
+
+            let a = ambulances[index];
+
+
+            id.value = a.id;
+            name.value = a.name;
+            driver.value = a.driver;
+            contact.value = a.contact;
+            location.value = a.location;
+            type.value = a.type;
+            status.value = a.status;
+
+
+
+            ambulances.splice(index, 1);
+
+
+            save();
+
+
+        }
+
+
+
+        function save() {
+
+
+            localStorage.setItem(
+                "ambulances",
+                JSON.stringify(ambulances)
+            );
+
+
+            display();
+
+
+        }
+
+
+
+
+        document.getElementById("search")
+            .addEventListener("keyup", function () {
+
+
+                let value = this.value.toLowerCase();
+
+
+
+                let result = ambulances.filter(a =>
+
+
+                    a.location.toLowerCase().includes(value) ||
+
+                    a.name.toLowerCase().includes(value) ||
+
+                    a.driver.toLowerCase().includes(value) ||
+
+                    a.contact.includes(value)
+
+
+
+                );
+
+
+
+                display(result);
+
+
+
+            });
+
+
+
+    </script>
+
+
+</body>
+
+</html>
